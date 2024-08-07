@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block localstyle %}
+    <link href="{% static 'styles/film_style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block searchform %}
+<form method="GET" action="film-search/" class="d-flex">
+    {% csrf_token %}
+    <input name="title" class="form-control me-2" type="search" placeholder="Название фильма" aria-label="Search">
+    <button class="btn btn-outline-primary" type="submit">Найти</button>
+</form>
+{% endblock searchform %}
+
+{% block content %}
+
+    <div style="padding: 20px;" class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <ul class="nav flex-column">
+                  <li class="nav-item">
+                    <a class="nav-link" href="http://127.0.0.1:8000/catalog/">Показать все</a>
+                  </li>
+                    {% for text, url in genres.items %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url }}">{{ text }}</a>
+                  </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-10">
+              <div class="container-fluid">
+
+                    <div class="row">
+                        {% if count > 0 %}
+                            {% include "films_cards.html" %}
+                        {% else %}
+                            <h4> По вашему запросу ничего не найдено </h4>
+                        {% endif %}
+                    </div>
+
+              </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
