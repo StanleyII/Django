@@ -130,6 +130,7 @@ def search_film(request: HttpRequest):
             builder.create()
             builder.set_title(title)
             film = builder.get_film()
+
             data = PGFilmsManager.read(connect, film)
             count = len(data) if data is not None else 0
             context = {
@@ -166,7 +167,7 @@ def search_film_by_genre(request: HttpRequest):
                 'genres': genres,
             }
         else:
-            params = (genre, title)
+            params = (genre, "%" + title + "%")
             query = """ SELECT
                             films.film_id,
                             films.title,
@@ -178,15 +179,15 @@ def search_film_by_genre(request: HttpRequest):
                             films.cover
                         FROM 
                             films, genres
-                        WHERE 
-                            films.genre_id = genres.genre_id and
-                            genres.translation = %s and
-                            films.title = %s """
+                        WHERE
+                            films.genre_id = genres.genre_id AND 
+                            genres.translation = %s AND 
+                            films.title LIKE %s"""
             cursor = connect.cursor()
             cursor.execute(query, params)
             films = cursor.fetchall()
 
-            print(films)
+            print(params)
 
             container = FilmsContainer()
             container.create_list_films(films)
