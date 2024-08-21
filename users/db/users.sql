@@ -1,0 +1,7 @@
+-- DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users (
+	user_id SERIAL PRIMARY KEY,
+	login VARCHAR(25) NOT NULL UNIQUE CHECK(LENGTH(login) > 0),
+	password VARCHAR(19) NOT NULL CHECK(LENGTH(password) > 0)
+);

@@ -1,16 +1,18 @@
 
 {% load static %}
 {% for film in data %}
-                <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="col-lg-2 col-sm-6 mb-3">
                    <div class="product-card">
                         <div class="product-thumb">
                             <a href="#"><img src="{% static 'img/covers/'|add:film.cover %}" alt="Нет обложки"></a>
                         </div>
                         <div class="product-details">
                             <h4><a href="#">{{ film.title }}</a></h4>
-                            <p>{{ film.description }}</p>
-                            <span>Страна: {{ film.country }} </span> • <span>Жанр: {{ film.genre }} </span> &nbsp&nbsp • <span>Режиссер: {{ film.director }}</span>
-                            <p>В ролях: {{ film.actors }}</p>
+<!--                            <p>{{ film.description }}</p>-->
+<!--                            <span>Страна: {{ film.country }} </span>-->
+<!--                            <span>Жанр: {{ film.genre }} </span>-->
+<!--                            <span>Режиссер: {{ film.director }}</span>-->
+<!--                            <p>В ролях: {{ film.actors }}</p>-->
                             <p>Рейтинг: {{ film.rating }}</p>
                         </div>
                    </div>

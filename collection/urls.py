@@ -20,10 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import catalog.views
+import startpage.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', catalog.views.main),
+    path('', startpage.views.main),
+    path('', include('users.urls')),
     path('catalog/', include('catalog.urls')),
     re_path(r'^catalog/genre/\w+/film-search/\S*', catalog.views.search_film_by_genre),
     re_path(r'^catalog/film-search/\S*', catalog.views.search_film),
