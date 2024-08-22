@@ -11,8 +11,8 @@
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div class="container">
+                <div class="collapse navbar-collapse" id="navbarNav">
                     <a class="navbar-brand" href="http://127.0.0.1:8000/">Фильмотека</a>
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 top-menu">
                         <li class="nav-item">
@@ -22,30 +22,12 @@
                             <a class="nav-link" href="http://127.0.0.1:8000/catalog/">Каталог</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Личная страница</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/personal/" tabindex="-1" aria-disabled="true">Личная страница</a>
                         </li>
                     </ul>
-
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-
-<!--                        <li class="nav-item dropdown">-->
-<!--                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"><i class="bi bi-person-square"></i></a>-->
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Регистрация</a></li>
-                                <li><a class="dropdown-item" href="#">Авторизация</a></li>
-                            </ul>
-<!--                        </li>-->
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="bi bi-person-circle"></i></a>
-                        </li> -->
-                    </ul>
-                    {% block searchform %}
-                    <!-- <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Название" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Найти</button>
-                    </form> -->
-                    {% endblock searchform %}
-
+                </div>
+                <div class="nav-item justify-content-end">
+                    <a class="nav-link navbar-light link-body-emphasis" href="http://127.0.0.1:8000/authorization/">Войти</a>
                 </div>
             </div>
         </nav>

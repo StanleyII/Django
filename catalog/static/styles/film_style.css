@@ -1,10 +1,10 @@
 .product-card {
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
     transition: all .3s;
+    outline: 2px solid #00eeff;
 }
 
 .product-card:hover {
-    box-shadow: 0 14px 30px -15px rgba(0, 0, 0, 0.75);
+    box-shadow: 0 14px 30px -15px #00eeff;
 }
 
 .product-thumb a {
@@ -27,7 +27,7 @@
 .product-details h4 a {
     font-weight: 500;
     display: block;
-    height: 60px;
+    height: 20px;
     overflow: hidden;
     text-decoration: none;
 }
@@ -36,6 +36,6 @@
     font-size: 15px;
     margin-bottom: 18px;
     color: #999;
-    height: 44px;
+    height: 24px;
     overflow: hidden;
 }
