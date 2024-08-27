@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+
+
+
+
+<div class="container my-2">
+       <div class="d-flex justify-content-between flex-wrap align-items-center">
+
+            <h2>Все новости</h2>
+            <a href="#" class="btn btn-primary">
+                Добавить новость
+            </a>
+       </div>
+
+       <div class="d-flex justify-content-between align-content-center align-items-center flex-wrap">
+
+           {% for news_item in data %}
+           <div class="card p-2 my-2" style="width: 18rem;">
+               <div class="product-thumb">
+                    <img src="{% static '/img/covers/'|add:news_item.cover %}" class="card-img-top" alt="Последняя новость №1">
+               </div>
+             <div class="card-body">
+               <h5 class="card-title">{{ news_item.title }}</h5>
+               <p class="card-text">{{ news_item.description|slice:"0:40"|add:"..." }}</p>
+               <a href="#" class="btn btn-primary">Читать полностью</a>
+             </div>
+           </div>
+           {% endfor %}
+
+         </div>
+    </div>
+
+
+  {% endblock content %}

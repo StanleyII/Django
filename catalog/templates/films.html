@@ -16,34 +16,86 @@
 
 {% block content %}
 
-    <div style="padding: 20px;" class="container">
-        <div class="row">
-            <div class="col-2">
-                <ul class="nav flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link" href="http://127.0.0.1:8000/catalog/">Показать все</a>
-                  </li>
-                    {% for text, url in genres.items %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url }}">{{ text }}</a>
-                  </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col-10">
-              <div class="container">
+<div class="container my-3">
 
-                    <div class="row">
-                        {% if count > 0 %}
-                            {% include "films_cards.html" %}
-                        {% else %}
-                            <h4> По вашему запросу ничего не найдено </h4>
-                        {% endif %}
-                    </div>
+            <div class="d-flex justify-content-between flex-wrap align-items-center">
 
-              </div>
+                <h3>Каталог фильмов</h3>
+
+                <div>
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Упорядочить
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">По наименованию (мин)</a></li>
+                          <li><a class="dropdown-item" href="#">По наименованию (макс)</a></li>
+                          <hr/>
+                          <li><a class="dropdown-item" href="#">По рейтингу (мин)</a></li>
+                          <li><a class="dropdown-item" href="#">По рейтингу (макс)</a></li>
+                        </ul>
+                      </div>
+
+                </div>
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Фильтровать
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% for text, url in genres.items %}
+                      <li><a class="dropdown-item" href="{{ url }}">{{ text }}</a></li>
+                        {% endfor %}
+                        <hr/>
+                        <li><a class="dropdown-item" href="http://127.0.0.1:8000/catalog/">Показать все</a></li>
+
+<!--                      <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                      <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                    </ul>
+                  </div>
             </div>
-        </div>
-    </div>
+
+            <div class="row my-3">
+
+                {% if count > 0 %}
+                    {% include "films_cards.html" %}
+                {% else %}
+                    <h4> По вашему запросу ничего не найдено </h4>
+                {% endif %}
+
+            </div>
+
+</div>
+
+<!--    <div style="padding: 20px;" class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-2">-->
+<!--                <ul class="nav flex-column">-->
+<!--                  <li class="nav-item">-->
+<!--                    <a class="nav-link" href="http://127.0.0.1:8000/catalog/">Показать все</a>-->
+<!--                  </li>-->
+<!--                    {% for text, url in genres.items %}-->
+<!--                  <li class="nav-item">-->
+<!--                    <a class="nav-link" href="{{ url }}">{{ text }}</a>-->
+<!--                  </li>-->
+<!--                    {% endfor %}-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div class="col-10">-->
+<!--              <div class="container">-->
+
+<!--                    <div class="row">-->
+<!--                        {% if count > 0 %}-->
+<!--                            {% include "films_cards.html" %}-->
+<!--                        {% else %}-->
+<!--                            <h4> По вашему запросу ничего не найдено </h4>-->
+<!--                        {% endif %}-->
+<!--                    </div>-->
+
+<!--              </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
 {% endblock %}

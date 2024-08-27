@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import catalog.views
+import news.views
 import startpage.views
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path('', startpage.views.main),
     path('', include('users.urls')),
     path('catalog/', include('catalog.urls')),
+    path('news/', news.views.main),
     re_path(r'^catalog/genre/\w+/film-search/\S*', catalog.views.search_film_by_genre),
     re_path(r'^catalog/film-search/\S*', catalog.views.search_film),
     re_path(r'^catalog/', catalog.views.redirect),

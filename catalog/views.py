@@ -187,8 +187,6 @@ def search_film_by_genre(request: HttpRequest):
             cursor.execute(query, params)
             films = cursor.fetchall()
 
-            print(params)
-
             container = FilmsContainer()
             container.create_list_films(films)
             data = container.get_list_films()
