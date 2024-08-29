@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+
+from django.http import HttpResponseRedirect
+
 from .films import Film, FilmsContainer
 import psycopg2
 
@@ -67,9 +70,23 @@ class PGFilmsManager(DBManager):
             print(e)
 
     @staticmethod
-    def update(connect, index_old_film: int, new_film: Film):
+    def update(connect, index_film: int):
         # Обновить данные о фильме в таблице
         ...
+        # try:
+        #     with connect.cursor() as cursor:
+        #
+        #         params = (index_film,)
+        #         query = """ UPDATE films
+        #         SET count = count + 1
+        #         WHERE film_id = %s """
+        #         cursor.execute(query, params)
+        #         data = cursor.fetchall()
+        #         cursor.close()
+        #         connect.commit()
+        #         return HttpResponseRedirect('/catalog/')
+        # except (Exception, psycopg2.Error) as e:
+        #     print(e)
 
     @staticmethod
     def delete(connect, film: Film):

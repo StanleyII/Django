@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block localstyle %}
+    <link href="{% static 'styles/film_style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-2">
+
+        <h1>Избранное</h1>
+
+        <table class="table">
+            <thead>
+              <tr>
+<!--                <th scope="col">#</th>-->
+                <th scope="col">Наименование фильма</th>
+                <th scope="col">Страна</th>
+                <th scope="col">Рейтинг</th>
+                <th scope="col">Действие</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for film in data %}
+              <tr>
+<!--                <th scope="row">1</th>-->
+
+                <td>{{ film.title }}</td>
+                <td>{{ film.country }}</td>
+                <td>{{ film.rating }}</td>
+                <td>
+                    <div class="row">
+                        <div class="col">
+                            <form method="POST" action="looked/">
+                            {% csrf_token %}
+                            <button name="film_id" class="btn btn-success" type="submit">
+                                Удалить
+                            </button>
+                        </div>
+                    </div>
+                </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+
+    </div>
+
+{% endblock content %}

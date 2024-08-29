@@ -14,7 +14,7 @@ def main(request):
                                     password='postgres')
 
     cursor = connect.cursor()
-    query = """ SELECT title, author, cover, date, description FROM news """
+    query = """ SELECT news_id, title, author, date, description, cover FROM news """
     cursor.execute(query)
     container = NewsContainer()
     container.create_list_news(cursor.fetchall())
@@ -28,3 +28,42 @@ def main(request):
     }
 
     return render(request, template_name='all_news.html', context=context)
+
+
+def news_detail(request: HttpRequest, news_detail):
+    connect = DBConnect.get_connect(dbname='library_of_films',
+                                    host='localhost',
+                                    port=5432,
+                                    user='postgres',
+                                    password='postgres')
+
+    cursor = connect.cursor()
+
+    query = """ SELECT
+                        news.news_id,
+                        news.title,
+                        news.author,
+                        news.date,
+                        news.description,
+                        news.cover
+                    FROM 
+                        news
+                    WHERE 
+                        news.news_id = %s"""
+    params = (news_detail,)
+    cursor.execute(query, params)
+    container = NewsContainer()
+    container.create_list_news(cursor.fetchall())
+    data = container.get_list_news()
+
+    cursor.close()
+
+    context = {
+        "data": data,
+    }
+
+    return render(request, template_name='page_news.html', context=context)
+
+
+def new_page(request: HttpRequest):
+    return render(request, template_name='new_page.html')

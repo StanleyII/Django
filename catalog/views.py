@@ -13,7 +13,21 @@ def main(request: HttpRequest):
                                     password='postgres')
 
     cursor = connect.cursor()
-    query = """ SELECT * FROM films """
+    query = """ SELECT
+                        films.film_id,
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count
+                    FROM 
+                        films, genres 
+                    WHERE
+                        films.genre_id = genres.genre_id"""
     cursor.execute(query)
     container = FilmsContainer()
     container.create_list_films(cursor.fetchall())
@@ -34,6 +48,81 @@ def main(request: HttpRequest):
     }
 
     return render(request, template_name='films.html', context=context)
+
+
+def film_detail(request: HttpRequest, film_detail):
+    connect = DBConnect.get_connect(dbname='library_of_films',
+                                    host='localhost',
+                                    port=5432,
+                                    user='postgres',
+                                    password='postgres')
+
+    cursor = connect.cursor()
+
+    query = """ SELECT
+                        films.film_id,
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count
+                    FROM 
+                        films, genres
+                    WHERE 
+                        films.genre_id = genres.genre_id and
+                        films.film_id = %s"""
+    params = (film_detail,)
+    cursor.execute(query, params)
+    container = FilmsContainer()
+    container.create_list_films(cursor.fetchall())
+    data = container.get_list_films()
+
+    query = """ SELECT
+                        films.film_id,
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count
+                    FROM 
+                        films, genres, favorites
+                    WHERE 
+                        films.genre_id = genres.genre_id AND films.film_id = favorites.film_id AND films.film_id != %s
+                    GROUP BY
+						films.film_id,
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count"""
+
+    params = (film_detail,)
+    cursor.execute(query, params)
+    container = FilmsContainer()
+    container.create_list_films(cursor.fetchall())
+    data_exc = container.get_list_films()
+
+    cursor.close()
+
+    context = {
+        "data": data,
+        "data_ex": data_exc,
+        "len_count": len(data_exc),
+    }
+
+    return render(request, template_name='page_film.html', context=context)
 
 
 def get_by_genre(request: HttpRequest, genre=None):
@@ -63,20 +152,39 @@ def get_by_genre(request: HttpRequest, genre=None):
                       context=context)
     else:
         params = (genre, )
+
         query = """ SELECT
                         films.film_id,
                         films.title,
                         genres.name_genre,
                         films.country,
                         films.director,
+                        films.actors,
                         films.description,
                         films.rating,
-                        films.cover
+                        films.cover,
+                        films.count
                     FROM 
                         films, genres
                     WHERE 
                         films.genre_id = genres.genre_id and
                         genres.translation = %s """
+
+        #
+        # query = """ SELECT
+        #                 films.film_id,
+        #                 films.title,
+        #                 genres.name_genre,
+        #                 films.country,
+        #                 films.director,
+        #                 films.description,
+        #                 films.rating,
+        #                 films.cover
+        #             FROM
+        #                 films, genres
+        #             WHERE
+        #                 films.genre_id = genres.genre_id and
+        #                 genres.translation = %s """
 
         cursor = connect.cursor()
         cursor.execute(query, params)
@@ -170,13 +278,15 @@ def search_film_by_genre(request: HttpRequest):
             params = (genre, "%" + title + "%")
             query = """ SELECT
                             films.film_id,
-                            films.title,
-                            genres.name_genre,
-                            films.country,
-                            films.director,
-                            films.description,
-                            films.rating,
-                            films.cover
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count
                         FROM 
                             films, genres
                         WHERE

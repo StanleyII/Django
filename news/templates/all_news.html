@@ -15,7 +15,7 @@
        <div class="d-flex justify-content-between flex-wrap align-items-center">
 
             <h2>Все новости</h2>
-            <a href="#" class="btn btn-primary">
+            <a href="http://127.0.0.1:8000/news/" class="btn btn-primary">
                 Добавить новость
             </a>
        </div>
@@ -30,7 +30,7 @@
              <div class="card-body">
                <h5 class="card-title">{{ news_item.title }}</h5>
                <p class="card-text">{{ news_item.description|slice:"0:40"|add:"..." }}</p>
-               <a href="#" class="btn btn-primary">Читать полностью</a>
+               <a href="{% url 'news_detail' news_item.news_id %}" class="btn btn-primary">Читать полностью</a>
              </div>
            </div>
            {% endfor %}

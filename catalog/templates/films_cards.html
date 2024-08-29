@@ -1,5 +1,7 @@
 
 {% load static %}
+
+{% block content %}
 {% for film in data %}
 <div class="col-lg-3 col-sm-6 mb-2">
     <div class="product-card">
@@ -7,9 +9,12 @@
             <a href="#"><img src="{% static 'img/covers/'|add:film.cover %}" alt="" style="height: 185px; width: 185px;"></a>
         </div>
         <div class="product-details">
-            <h4><a href="#" style="font-size: 16px; text-decoration: none;">{{ film.title }}</a></h4>
+            <h4><a href="{% url 'film_detail' film.film_id %}" style="font-size: 16px; text-decoration: none;">{{ film.title }}</a></h4>
             <p>Рейтинг: {{ film.rating }}</p>
+            <p>Количество просмотров: {{ film.count }}</p>
         </div>
     </div>
 </div>
 {% endfor %}
+
+{% endblock %}

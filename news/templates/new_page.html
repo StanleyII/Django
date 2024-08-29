@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block localstyle %}
+    <link href="{% static 'styles/film_style.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-2">
+
+        <h1>Добавление новой новости</h1>
+
+        <form action="#" method="post">
+
+            <div class="my-3">
+
+                <label for="title" class="form-label">Заголовок</label>
+                <input type="text" class="form-control" id="title" placeholder="Заголовок" required>
+
+            </div>
+
+            <div class="my-3">
+
+                <label for="new_text" class="form-label">Текст</label>
+
+                <textarea style="height: 125px;" class="form-control" aria-label="With textarea" id="new_text" required></textarea>
+
+            </div>
+
+            <div class="my-3">
+                <label for="myFile" class="form-label">Изображение</label>
+                <input type="file" id="myFile" name="filename" required>
+            </div>
+
+            <div class="my-3">
+
+                <label for="author" class="form-label">Автор</label>
+                <input type="text" class="form-control" id="author" placeholder="Автор" required>
+
+
+            </div>
+
+            <div class="my-3">
+
+                <label for="data_published" class="form-label">Дата публикации</label>
+                <input type="date" class="form-control" id="data_published" placeholder="Дата публикации" required>
+
+            </div>
+
+            <div class="d-grid gap-2 my-3">
+                <button class="btn btn-success">
+                    Добавить
+                </button>
+            </div>
+
+
+
+
+
+        </form>
+
+    </div>
+
+
+{% endblock content %}
