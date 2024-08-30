@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS films (
 	actors TEXT NOT NULL DEFAULT 'Без описания',
 	description TEXT NOT NULL DEFAULT 'Без описания',
 	rating NUMERIC(3,2) NOT NULL CHECK(rating BETWEEN 0 and 10) DEFAULT 0,
-	cover INTEGER NOT NULL DEFAULT 0,
-	counter INTEGER NOT NULL CHECK(counter > -1) DEFAULT 0,
+	cover VARCHAR(100) NOT NULL CHECK(LENGTH(cover) > 0) DEFAULT '0',
+	count INTEGER NOT NULL CHECK(count > -1) DEFAULT 0,
 	FOREIGN KEY(genre_id)
         REFERENCES genres(genre_id)
             ON DELETE NO ACTION
