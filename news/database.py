@@ -31,7 +31,17 @@ class PGNewsManager(DBManager):
     @staticmethod
     def create(connect, news: News):
         # Вызвать запрос вставки данных из объекта в таблицу
-        ...
+        try:
+            with connect.cursor() as cursor:
+                params = (news.news_id, news.title, news.author, news.date, news.description, news.cover[:len(news.cover)-4])
+                query = """ 
+                        INSERT INTO news(news_id, title, author, date, description, cover)
+                        VALUES (%s, %s, %s, %s, %s, %s)
+
+                        """
+                cursor.execute(query, params)
+        except (Exception, psycopg2.Error) as e:
+            print(e)
 
     @staticmethod
     def read(connect, news: News) -> list[News]:

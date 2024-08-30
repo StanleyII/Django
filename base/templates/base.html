@@ -13,7 +13,7 @@
     <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-          <a class="navbar-brand" href="http://127.0.0.1:8000/"><img src="#" alt="" style="height: 24px; width: 30px; gap: 24px;">MovieSafe</a>
+          <a class="navbar-brand" href="http://127.0.0.1:8000/"><img src="{% static "base/static/img/logo.png" %}" alt="" style="height: 24px; width: 30px; gap: 24px;">MovieSafe</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -28,15 +28,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="http://127.0.0.1:8000/personal/" tabindex="-1" aria-disabled="true">Личная страница</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Вход</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Регистрация</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Выйти</a>
-              </li>
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Вход</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Регистрация</a>-->
+<!--              </li>-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link disabled" href="http://127.0.0.1:8000/users/">Выйти</a>-->
+<!--              </li>-->
             </ul>
 
               {% block searchform %} {% endblock searchform %}

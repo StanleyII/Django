@@ -15,15 +15,20 @@
        <div class="d-flex justify-content-between flex-wrap align-items-center">
 
             <h2>Все новости</h2>
-            <a href="http://127.0.0.1:8000/news/" class="btn btn-primary">
+<!--           <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--              <li class="nav-item">-->
+<!--                <a class="nav-link" href="http://127.0.0.1:8000/news/">Добавить новость</a>-->
+<!--              </li>-->
+<!--           </ul>-->
+            <a href="http://127.0.0.1:8000/news/new_page/" aria-current="page" class="btn btn-primary" type="button">
                 Добавить новость
             </a>
        </div>
 
-       <div class="d-flex justify-content-between align-content-center align-items-center flex-wrap">
-
+<!--       <div class="d-flex justify-content-between align-content-center align-items-center flex-wrap">-->
+        <div class="row">
            {% for news_item in data %}
-           <div class="card p-2 my-2" style="width: 18rem;">
+           <div class="card mb-2" style="width: 18rem;">
                <div class="product-thumb">
                     <img src="{% static '/img/covers/'|add:news_item.cover %}" class="card-img-top" alt="Последняя новость №1">
                </div>
@@ -34,8 +39,9 @@
              </div>
            </div>
            {% endfor %}
+            </div>
 
-         </div>
+<!--         </div>-->
     </div>
 
 

@@ -33,11 +33,12 @@
                 <td>
                     <div class="row">
                         <div class="col">
-                            <form method="POST" action="looked/">
+                            <form method="POST" action="delete/">
                             {% csrf_token %}
-                            <button name="film_id" class="btn btn-success" type="submit">
+                            <button name="delete_film" class="btn btn-success" type="submit" value="{{ film.film_id }}">
                                 Удалить
                             </button>
+                            </form>
                         </div>
                     </div>
                 </td>

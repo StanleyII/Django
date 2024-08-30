@@ -29,7 +29,7 @@ urlpatterns = [
     path('', startpage.views.main),
     path('catalog/', include('catalog.urls')),
     path('news/', include('news.urls')),
-    path('personal/', personal.views.main),
+    path('personal/', include('personal.urls')),
     re_path(r'^catalog/genre/\w+/film-search/\S*', catalog.views.search_film_by_genre),
     re_path(r'^catalog/film-search/\S*', catalog.views.search_film),
     re_path(r'^catalog/', catalog.views.redirect),

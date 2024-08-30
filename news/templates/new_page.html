@@ -12,45 +12,45 @@
 
         <h1>Добавление новой новости</h1>
 
-        <form action="#" method="post">
-
+        <form action="create_news/" method="POST">
+            {% csrf_token %}
             <div class="my-3">
 
-                <label for="title" class="form-label">Заголовок</label>
-                <input type="text" class="form-control" id="title" placeholder="Заголовок" required>
+                <label for="inputTitle" class="form-label">Заголовок</label>
+                <input type="text" class="form-control" name="title" id="inputTitle" placeholder="Заголовок" required>
 
             </div>
 
             <div class="my-3">
 
-                <label for="new_text" class="form-label">Текст</label>
+                <label for="inputDescription" class="form-label">Текст</label>
 
-                <textarea style="height: 125px;" class="form-control" aria-label="With textarea" id="new_text" required></textarea>
-
-            </div>
-
-            <div class="my-3">
-                <label for="myFile" class="form-label">Изображение</label>
-                <input type="file" id="myFile" name="filename" required>
-            </div>
-
-            <div class="my-3">
-
-                <label for="author" class="form-label">Автор</label>
-                <input type="text" class="form-control" id="author" placeholder="Автор" required>
-
+                <textarea style="height: 125px;" class="form-control" aria-label="With textarea" name="description" id="inputDescription" required></textarea>
 
             </div>
 
             <div class="my-3">
+                <label for="inputCover" class="form-label">Изображение</label>
+                <input type="file" name="cover" class="form-control" id="inputCover" required>
+            </div>
 
-                <label for="data_published" class="form-label">Дата публикации</label>
-                <input type="date" class="form-control" id="data_published" placeholder="Дата публикации" required>
+            <div class="my-3">
+
+                <label for="inputAuthor" class="form-label">Автор</label>
+                <input type="text" class="form-control" name="author" id="inputAuthor" placeholder="Автор" required>
+
+
+            </div>
+
+            <div class="my-3">
+
+                <label for="inputDate" class="form-label">Дата публикации</label>
+                <input type="date" class="form-control" name="date" id="inputDate"  placeholder="Дата публикации" required>
 
             </div>
 
             <div class="d-grid gap-2 my-3">
-                <button class="btn btn-success">
+                <button class="btn btn-success" type="submit">
                     Добавить
                 </button>
             </div>

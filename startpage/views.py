@@ -55,7 +55,24 @@ def main(request: HttpRequest):
                                     password='postgres')
 
     cursor = connect.cursor()
-    query = """ SELECT * FROM films ORDER BY rating DESC LIMIT 5"""
+    query = """ SELECT
+                        films.film_id,
+                        films.title,
+                        genres.name_genre,
+                        films.country,
+                        films.director,
+                        films.actors,
+                        films.description,
+                        films.rating,
+                        films.cover,
+                        films.count
+                    FROM 
+                        films, genres
+                    WHERE 
+                        films.genre_id = genres.genre_id
+                    ORDER BY
+                        films.rating
+                    LIMIT 5"""
     cursor.execute(query)
     container = FilmsContainer()
     container.create_list_films(cursor.fetchall())
@@ -63,7 +80,7 @@ def main(request: HttpRequest):
 
     top_films = get_list_slides(top_films)
 
-    print(top_films)
+    # print(top_films)
 
     query = """ SELECT * FROM news ORDER BY date DESC LIMIT 4 """
     cursor.execute(query)

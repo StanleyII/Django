@@ -42,3 +42,7 @@ def main(request: HttpRequest):
     }
 
     return render(request, template_name='favorites.html', context=context)
+
+
+def delete_film(request: HttpRequest):
+    print(request.GET.get('film_id', ''))

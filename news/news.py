@@ -86,15 +86,18 @@ class NewsCreator:
     def change_builder(self, builder: Builder):
         self._builder = builder
 
-    def make(self, news: tuple) -> News:
+    def make(self, news: tuple, new_news: bool=False) -> News:
         self._builder.create()
         self._builder.set_news_id(news[0])
         self._builder.set_title(news[1])
         self._builder.set_author(news[2])
         self._builder.set_date(news[3])
         self._builder.set_description(news[4])
-        img_path = str(news[5]) + '.jpg'
-        self._builder.set_cover(img_path)
+        if not new_news:
+            img_path = str(news[5]) + '.jpg'
+            self._builder.set_cover(img_path)
+        else:
+            self._builder.set_cover(news[5])
         return self._builder.get_news()
 
 

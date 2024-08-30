@@ -28,50 +28,23 @@
     </div>
 
     <div class="container my-2">
-
+        {% if len_count > 0 %}
         <h5>Смотрите также</h5>
 
 
-        <div class="d-flex justify-content-around align-content-center align-items-center flex-wrap">
-
-            <div class="card p-2 my-2" style="width: 18rem;">
-              <img src="img/1.jpeg" class="card-img-top" alt="Последняя новость №1">
+        <div class="row mb-3 my-3">
+            {% for item_news in data_ex %}
+            <div class="card mb-3" style="width: 18rem;">
+              <img src="{% static 'img/covers/'|add:item_news.cover %}" class="card-img-top" alt="Последняя новость №1">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas officia blanditiis repellat earum, eos non dolore officiis cupiditate vel illo velit excepturi ipsam quas tempore esse laudantium eaque corrupti impedit?</p>
-                <a href="#" class="btn btn-primary">Читать полностью</a>
+                <h5 class="card-title">{{ item_news.title }}</h5>
+                <p class="card-text">{{ item_news.description|slice:"0:120"|add:"..." }}</p>
+                <a href="{% url 'news_detail' item_news.news_id %}" class="btn btn-primary">Читать полностью</a>
               </div>
             </div>
-
-
-            <div class="card p-2 my-2" style="width: 18rem;">
-              <img src="img/1.jpeg" class="card-img-top" alt="Последняя новость №1">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas officia blanditiis repellat earum, eos non dolore officiis cupiditate vel illo velit excepturi ipsam quas tempore esse laudantium eaque corrupti impedit?</p>
-                <a href="#" class="btn btn-primary">Читать полностью</a>
-              </div>
-            </div>
-
-
-            <div class="card p-2 my-2" style="width: 18rem;">
-              <img src="img/1.jpeg" class="card-img-top" alt="Последняя новость №1">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas officia blanditiis repellat earum, eos non dolore officiis cupiditate vel illo velit excepturi ipsam quas tempore esse laudantium eaque corrupti impedit?</p>
-                <a href="#" class="btn btn-primary">Читать полностью</a>
-              </div>
-            </div>
-
-            <div class="card p-2 my-2" style="width: 18rem;">
-              <img src="img/1.jpeg" class="card-img-top" alt="Последняя новость №1">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas officia blanditiis repellat earum, eos non dolore officiis cupiditate vel illo velit excepturi ipsam quas tempore esse laudantium eaque corrupti impedit?</p>
-                <a href="#" class="btn btn-primary">Читать полностью</a>
-              </div>
-            </div>
+            {% endfor %}
           </div>
+        {% endif %}
     </div>
 
 {% endblock content %}
