@@ -80,8 +80,6 @@ def main(request: HttpRequest):
 
     top_films = get_list_slides(top_films)
 
-    # print(top_films)
-
     query = """ SELECT * FROM news ORDER BY date DESC LIMIT 4 """
     cursor.execute(query)
 

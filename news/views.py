@@ -113,7 +113,7 @@ def create_news(request: HttpRequest):
         value = cursor.fetchall()
 
         params_news = (int(value[0][0]) + 1, title, author, date_p, description, cover)
-        # print(params_news)
+
         news_builder = NewsBuilder()
         news = NewsCreator(news_builder)
         make_news = news.make(params_news, new_news=True)

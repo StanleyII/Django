@@ -170,22 +170,6 @@ def get_by_genre(request: HttpRequest, genre=None):
                         films.genre_id = genres.genre_id and
                         genres.translation = %s """
 
-        #
-        # query = """ SELECT
-        #                 films.film_id,
-        #                 films.title,
-        #                 genres.name_genre,
-        #                 films.country,
-        #                 films.director,
-        #                 films.description,
-        #                 films.rating,
-        #                 films.cover
-        #             FROM
-        #                 films, genres
-        #             WHERE
-        #                 films.genre_id = genres.genre_id and
-        #                 genres.translation = %s """
-
         cursor = connect.cursor()
         cursor.execute(query, params)
         films = cursor.fetchall()
@@ -277,7 +261,7 @@ def search_film_by_genre(request: HttpRequest):
         else:
             params = (genre, "%" + title + "%")
             query = """ SELECT
-                            films.film_id,
+                        films.film_id,
                         films.title,
                         genres.name_genre,
                         films.country,
